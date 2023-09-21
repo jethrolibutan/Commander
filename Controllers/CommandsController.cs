@@ -5,14 +5,21 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Commander.Controllers
 {
+
     // This is a controller class. It's a class that handles HTTP requests
     // The ControllerBase class is a class that has all the functionality to handle HTTP requests
     [Route("api/commands")]
     [ApiController]
     public class CommandsController : ControllerBase
     {
+        private readonly ICommanderRepo _repository;
 
-        private readonly MockCommanderRepo _repository = new MockCommanderRepo();
+        public CommandsController(ICommanderRepo repository)
+        {
+        _repository = repository;
+        }
+
+        // private readonly MockCommanderRepo _repository = new MockCommanderRepo();
 
         // This is a method that handles HTTP requests
         // These two methods respond to GET api/commands
