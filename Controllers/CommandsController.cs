@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Commander.Data;
 using Commander.Models;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
 
 namespace Commander.Controllers
 {
@@ -14,12 +15,11 @@ namespace Commander.Controllers
     {
         private readonly ICommanderRepo _repository;
 
-        public CommandsController(ICommanderRepo repository)
+        public CommandsController(ICommanderRepo repository, IMapper mapper)
         {
-        _repository = repository;
+            _repository = repository;
+            _mapper = mapper;
         }
-
-        // private readonly MockCommanderRepo _repository = new MockCommanderRepo();
 
         // This is a method that handles HTTP requests
         // These two methods respond to GET api/commands
@@ -39,7 +39,11 @@ namespace Commander.Controllers
         {
             var commandItem = _repository.GetCommandById(id);
 
-            return Ok(commandItem); 
+            if(commandItem != null)
+            {
+                return Ok(commandItem);
+            }
+            return NotFound();
         }
     } 
 }
