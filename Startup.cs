@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Commander.Data;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace Commander
@@ -31,6 +32,9 @@ namespace Commander
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<CommanderContext>(opt => opt.UseSqlServer
+                (Configuration.GetConnectionString("CommanderConnection")));
+
             services.AddControllers();
 
             services.AddScoped<ICommanderRepo, MockCommanderRepo>();
