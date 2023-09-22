@@ -27,7 +27,7 @@ namespace Commander.Controllers
         public ActionResult <IEnumerable<Command>> GetAllCommands()
         {
             // This is a variable that stores the commands from the repository
-            var commandItems = _repository.GetAppCommands();
+            var commandItems = _repository.GetAllCommands();
 
             // This returns those command items that came from the repository
             return Ok(commandItems);

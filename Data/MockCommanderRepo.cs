@@ -7,7 +7,7 @@ namespace Commander.Data
     // You have to implement the methods from the interface that are specified in the interface 
     public class MockCommanderRepo : ICommanderRepo
     {
-        public IEnumerable <Command> GetAppCommands()
+        public IEnumerable <Command> GetAllCommands()
         {
            var commands = new List<Command>
            {
